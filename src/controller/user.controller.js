@@ -57,6 +57,11 @@ exports.signin = async (req, res) => {
                 "msg": "Invalid Password"
             })
         }
+        if (checkpassword) {
+            return res.status(200).json({
+              "msg": 'Login Sucessfull '
+            })
+          }
     } catch (error) {
         console.log(error);
         return res.status(500).json({
