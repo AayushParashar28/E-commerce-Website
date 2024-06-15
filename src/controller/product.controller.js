@@ -89,3 +89,29 @@ exports.deleteProductbyId = async (req , res) => {
         });
     }
 }
+
+exports.getproductbyId = async (req , res) => {
+    try {
+        const id = {
+            Id:req.body.Id
+        }
+
+        const checkId = await ProductModel.findOne({Id:id.Id})
+        if(checkId){
+            return res.status(201).json({
+                sucess : true,
+                response: checkId
+            })
+        }else{
+            return res.status(200).json({
+                msg :"Id Not Found"
+            })
+        }
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            msg: "Internal Server Error"
+        });
+    }
+}
